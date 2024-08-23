@@ -1,0 +1,98 @@
+sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 11.4.3-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE TBD_EVA1;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| TBD_EVA1           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| test               |
++--------------------+
+7 rows in set (0.000 sec)
+
+MariaDB [(none)]> USE TBD_EVA1
+Database changed
+MariaDB [TBD_EVA1]> DROP TBD_EVA1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'TBD_EVA1' at line 1
+MariaDB [TBD_EVA1]> DROP DATABASE TBD_EVA1 ;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE TBD_EVA1;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> USE TBD_EVA1 ;
+Database changed
+MariaDB [TBD_EVA1]> CREATE TABLE first_table;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [TBD_EVA1]> CREATE TABLE first_table(
+-> id int);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [TBD_EVA1]> SHOW TABLES;
++--------------------+
+| Tables_in_TBD_EVA1 |
++--------------------+
+| first_table        |
++--------------------+
+1 row in set (0.000 sec)
+
+MariaDB [TBD_EVA1]> DROP TABLE first_table;
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [TBD_EVA1]> SHOW TABLES;
+Empty set (0.000 sec)
+
+MariaDB [TBD_EVA1]> CREATE TABLE first_table( id int);
+Query OK, 0 rows affected (0.036 sec)
+
+MariaDB [TBD_EVA1]> DROP DATABASE TBD_EVA1 ;
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [(none)]> CREATE DATABASE tbd_eva1;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> USE tbd_eva1;
+Database changed
+MariaDB [tbd_eva1]> CREATE TABLE first_table(id int);
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| first_table        |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
