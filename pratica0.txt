@@ -1,0 +1,285 @@
+Script started on 2024-08-21 19:35:04-06:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="135" LINES="36"]
+]0;root@Trimethy:/usr[?2004h[root@Trimethy usr]# mysql
+[?2004lmysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 5
+Server version: 11.4.3-MariaDB Arch Linux
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> D[KCREATE DATABSE [K[K[KASE sakila;
+(B[0;1mQuery OK, 1 row affected (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> USE sakila;
+(B[0;1mDatabase changed
+(B[mMariaDB [sakila]> SOURCE /home/user[K[K[K[K[K[K[K[K[K[K/home/senorbuen0/ISC/sem5/bases-datos/sakila-db/sakila-schema.sql
+(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.007 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 1 row affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mDatabase changed
+(B[m(B[0;1mQuery OK, 0 rows affected (0.014 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.015 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.012 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.014 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.013 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.024 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.017 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.014 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.016 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.034 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.020 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.020 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.020 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.016 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.021 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.024 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.020 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.021 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.008 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.005 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.010 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.008 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.008 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.008 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sakila]> SOURCE /home/senorbuen0/ISC/sem5/bases-datos/sakila-db/sakila-schema.sql[K[K[K[K[K[K[K[K[K[KDATA[K[K[K[Kdadt.[K[K[Kta.sqp[Kl
+(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mDatabase changed
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 200 rows affected (0.006 sec)
+(B[m(B[0;1mRecords: 200  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 603 rows affected (0.015 sec)
+(B[m(B[0;1mRecords: 603  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 16 rows affected (0.003 sec)
+(B[m(B[0;1mRecords: 16  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 600 rows affected (0.010 sec)
+(B[m(B[0;1mRecords: 600  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 109 rows affected (0.003 sec)
+(B[m(B[0;1mRecords: 109  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 599 rows affected (0.014 sec)
+(B[m(B[0;1mRecords: 599  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.014 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 1000 rows affected (0.074 sec)
+(B[m(B[0;1mRecords: 1000  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.017 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 5462 rows affected (0.049 sec)
+(B[m(B[0;1mRecords: 5462  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.003 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 1000 rows affected (0.011 sec)
+(B[m(B[0;1mRecords: 1000  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 4581 rows affected (0.052 sec)
+(B[m(B[0;1mRecords: 4581  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.003 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 6 rows affected (0.004 sec)
+(B[m(B[0;1mRecords: 6  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 14881 rows affected (0.177 sec)
+(B[m(B[0;1mRecords: 14881  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 1163 rows affected (0.025 sec)
+(B[m(B[0;1mRecords: 1163  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.004 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.014 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 12377 rows affected (0.176 sec)
+(B[m(B[0;1mRecords: 12377  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 3667 rows affected (0.072 sec)
+(B[m(B[0;1mRecords: 3667  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.009 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.015 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 2 rows affected (0.009 sec)
+(B[m(B[0;1mRecords: 2  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 2 rows affected (0.003 sec)
+(B[m(B[0;1mRecords: 2  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.002 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[m(B[0;1mQuery OK, 0 rows affected (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sakila]> SHOW TABLES[K[K[K[KBLES;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+(B[0;1m23 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [sakila]> exit
+(B[0;1mBye
+(B[m]0;root@Trimethy:/usr[?2004h[root@Trimethy usr]# exit
+[?2004lexit
+
+Script done on 2024-08-21 19:37:03-06:00 [COMMAND_EXIT_CODE="0"]
