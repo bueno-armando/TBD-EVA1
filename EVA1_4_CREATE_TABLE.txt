@@ -1,0 +1,71 @@
+╭─senorbuen0@Trimethy in ~ took 1s
+╰─λ sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4
+Server version: 11.4.3-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> CREATE TABLE student (
+-> name VARCHAR(50),
+-> ssn VARCHAR(11),
+-> home_phone VARCHAR(8),
+-> address VARCHAR(100),
+-> age INT);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| first_table        |
+| student            |
++--------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> DROP first_table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'first_table' at line 1
+MariaDB [tbd_eva1]> DROP TABLE first_table:
+-> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ':' at line 1
+MariaDB [tbd_eva1]> DROP TABLE first_table;
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [tbd_eva1]> DESC student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(50)  | YES  |     | NULL    |       |
+| ssn        | varchar(11)  | YES  |     | NULL    |       |
+| home_phone | varchar(8)   | YES  |     | NULL    |       |
+| address    | varchar(100) | YES  |     | NULL    |       |
+| age        | int(11)      | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SHOW CREATE TABLE student;
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                               |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| student | CREATE TABLE `student` (
+`name` varchar(50) DEFAULT NULL,
+`ssn` varchar(11) DEFAULT NULL,
+`home_phone` varchar(8) DEFAULT NULL,
+`address` varchar(100) DEFAULT NULL,
+`age` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
