@@ -1,0 +1,187 @@
+╭─senorbuen0@Trimethy in ~/ISC/sem5/leng-autom via  v3.12.4 took 1s
+✦ [🔴] × sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 6
+Server version: 11.4.3-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| student            |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [tbd_eva1]> DESC student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(50)  | YES  |     | NULL    |       |
+| ssn        | varchar(11)  | YES  |     | NULL    |       |
+| home_phone | varchar(8)   | YES  |     | NULL    |       |
+| address    | varchar(100) | YES  |     | NULL    |       |
+| age        | int(11)      | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO student
+-> value('Juan Perez',
+-> '00-11',
+-> '1234567',
+-> 'Av. Principal 1234',
+-> 22);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO student
+-> values('X', 'X', 'X', 'X', 0),
+-> ('Y', 'Y', 'Y', 'Y', 1),
+-> ('Z', 'Z', 'Z', 'Z', 2);
+Query OK, 3 rows affected (0.003 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> INSERT INTO student(name)
+-> VALUE('pedro');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> INSERTO INTO student(name),
+-> VALUES('juan'),('xxx');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSERTO INTO student(name),
+VALUES('juan'),('xxx')' at line 1
+MariaDB [tbd_eva1]> INSERTO INTO student(name) VALUES('juan'),('xxx');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSERTO INTO student(name) VALUES('juan'),('xxx')' at line 1
+MariaDB [tbd_eva1]> INSERT INTO student (name)
+-> VALUES
+->   ('juan'),
+->   ('xxx');
+Query OK, 2 rows affected (0.003 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> SELECT * FROM student;
++------------+-------+------------+--------------------+------+
+| name       | ssn   | home_phone | address            | age  |
++------------+-------+------------+--------------------+------+
+| Juan Perez | 00-11 | 1234567    | Av. Principal 1234 |   22 |
+| X          | X     | X          | X                  |    0 |
+| Y          | Y     | Y          | Y                  |    1 |
+| Z          | Z     | Z          | Z                  |    2 |
+| pedro      | NULL  | NULL       | NULL               | NULL |
+| juan       | NULL  | NULL       | NULL               | NULL |
+| xxx        | NULL  | NULL       | NULL               | NULL |
++------------+-------+------------+--------------------+------+
+7 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SELECT name, ssn FROM student;
++------------+-------+
+| name       | ssn   |
++------------+-------+
+| Juan Perez | 00-11 |
+| X          | X     |
+| Y          | Y     |
+| Z          | Z     |
+| pedro      | NULL  |
+| juan       | NULL  |
+| xxx        | NULL  |
++------------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SELECT COUNT(*) FROM student;
++----------+
+| COUNT(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM student LIMIT 2;
++------------+-------+------------+--------------------+------+
+| name       | ssn   | home_phone | address            | age  |
++------------+-------+------------+--------------------+------+
+| Juan Perez | 00-11 | 1234567    | Av. Principal 1234 |   22 |
+| X          | X     | X          | X                  |    0 |
++------------+-------+------------+--------------------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE automovil (
+-> marca VARCHAR(20),
+-> modelo VARCHAR(30),
+-> anio INT,
+-> precio FLOAT,
+-> vin VARCHAR(20),
+-> color VARCHAR(15));
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO STUDENT
+-> value('Chrysler',
+-> 'Town & City',
+-> 2009,
+-> 500000.20
+-> ,'1FTDW14V78AB32546',
+-> 'Gris');
+ERROR 1146 (42S02): Table 'tbd_eva1.STUDENT' doesn't exist
+MariaDB [tbd_eva1]> INSERT INTO student value('Chrysler', 'Town & City', 2009, 500000.20 ,'1FTDW14V78AB32546', 'Gris');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [tbd_eva1]> INSERT INTO student value('Chrysler', 'Town & City', 2009, 500000.20 ,'1FTDW14V78AB32546', 'Gris');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [tbd_eva1]> INSERT INTO student (marca, modelo, anio, precio, vin, color)
+-> VALUES ('Chrysler', 'Town & City', 2009, 500000.20, '1FTDW14V78AB32546', 'Gris');
+ERROR 1054 (42S22): Unknown column 'marca' in 'field list'
+MariaDB [tbd_eva1]> DESC student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(50)  | YES  |     | NULL    |       |
+| ssn        | varchar(11)  | YES  |     | NULL    |       |
+| home_phone | varchar(8)   | YES  |     | NULL    |       |
+| address    | varchar(100) | YES  |     | NULL    |       |
+| age        | int(11)      | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| student            |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> DESC automovil;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| marca  | varchar(20) | YES  |     | NULL    |       |
+| modelo | varchar(30) | YES  |     | NULL    |       |
+| anio   | int(11)     | YES  |     | NULL    |       |
+| precio | float       | YES  |     | NULL    |       |
+| vin    | varchar(20) | YES  |     | NULL    |       |
+| color  | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO automovil (marca, modelo, anio, precio, vin, color)
+-> VALUES ('Chrysler', 'Town & City', 2009, 500000.20, '1FTDW14V78AB32546', 'Gris');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM automovil;
++----------+-------------+------+--------+-------------------+-------+
+| marca    | modelo      | anio | precio | vin               | color |
++----------+-------------+------+--------+-------------------+-------+
+| Chrysler | Town & City | 2009 | 500000 | 1FTDW14V78AB32546 | Gris  |
++----------+-------------+------+--------+-------------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
