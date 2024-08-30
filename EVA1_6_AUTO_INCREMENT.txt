@@ -1,0 +1,321 @@
+╭─senorbuen0@Trimethy in ~/ISC/sem5/bases-datos
+╰─λ sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4
+Server version: 11.4.3-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| student            |
++--------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> DESC STUDENT;
+ERROR 1146 (42S02): Table 'tbd_eva1.STUDENT' doesn't exist
+MariaDB [tbd_eva1]> DESC student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(50)  | YES  |     | NULL    |       |
+| ssn        | varchar(11)  | YES  |     | NULL    |       |
+| home_phone | varchar(8)   | YES  |     | NULL    |       |
+| address    | varchar(100) | YES  |     | NULL    |       |
+| age        | int(11)      | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE tv(
+-> id int key,
+-> marca varchar(50),
+-> ROLLBACK;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| student            |
++--------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE tv(
+-> id int key,
+-> marca varchar(50) not null,
+-> modelo varchar(50) not null,
+-> tama int not null,
+-> tipo varchar(50));
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [tbd_eva1]> DESC tv;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(11)     | NO   | PRI | NULL    |       |
+| marca  | varchar(50) | NO   |     | NULL    |       |
+| modelo | varchar(50) | NO   |     | NULL    |       |
+| tama   | int(11)     | NO   |     | NULL    |       |
+| tipo   | varchar(50) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO tv(tipo)
+-> value("LED");
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+MariaDB [tbd_eva1]> INSERT INTO tv(id, marca, modelo, tama)
+-> 5, "SONY", "BRAVIA", 75);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '5, "SONY", "BRAVIA", 75)' at line 2
+MariaDB [tbd_eva1]> INSERT INTO tv(id, marca, modelo, tama) value(5, "SONY", "BRAVIA", 75);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO tv(id, marca, modelo, tama) value(5, "SONY", "BRAVIA", 75);
+ERROR 1062 (23000): Duplicate entry '5' for key 'PRIMARY'
+MariaDB [tbd_eva1]> INSERT INTO tv(id, marca, modelo, tama) value(1, "SONY", "BRAVIA", 75);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO TV
+-> value(2, "Samsung", "SmartTV", 100, "OLED");
+ERROR 1146 (42S02): Table 'tbd_eva1.TV' doesn't exist
+MariaDB [tbd_eva1]> INSERT INTO tv value(2, "Samsung", "SmartTV", 100, "OLED");
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [tbd_eva1]> SELECT COUNT(*) FROM tv;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SELECT COUNT(*) FROM TV;
+ERROR 1146 (42S02): Table 'tbd_eva1.TV' doesn't exist
+MariaDB [tbd_eva1]> SELECT * FROM tv;
++----+---------+---------+------+------+
+| id | marca   | modelo  | tama | tipo |
++----+---------+---------+------+------+
+|  1 | SONY    | BRAVIA  |   75 | NULL |
+|  2 | Samsung | SmartTV |  100 | OLED |
+|  5 | SONY    | BRAVIA  |   75 | NULL |
++----+---------+---------+------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> DESC tv;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(11)     | NO   | PRI | NULL    |       |
+| marca  | varchar(50) | NO   |     | NULL    |       |
+| modelo | varchar(50) | NO   |     | NULL    |       |
+| tama   | int(11)     | NO   |     | NULL    |       |
+| tipo   | varchar(50) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE peliculas(
+-> id INT AUTO_INCREMENT KEY,
+-> titulo VARCHAR(50) NOT NULL,
+-> genero VARCHAR(50) NOT NULL,
+-> clasi VARHCAR(50) NOT NULL);
+ERROR 4161 (HY000): Unknown data type: 'VARHCAR'
+MariaDB [tbd_eva1]> CREATE TABLE peliculas( id INT AUTO_INCREMENT KEY, titulo VARCHAR(50) NOT NULL, genero VARCHAR(50) NOT NULL, clasi VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(titulo, genero, clasi) VALUE("Coraline", "Comedia", "PG");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> DESC peliculas;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| titulo | varchar(50) | NO   |     | NULL    |                |
+| genero | varchar(50) | NO   |     | NULL    |                |
+| clasi  | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SELECT COUNT(*) FROM peliculas;
++----------+
+| COUNT(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+----------+---------+-------+
+| id | titulo   | genero  | clasi |
++----+----------+---------+-------+
+|  1 | Coraline | Comedia | PG    |
++----+----------+---------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(titulo, genero, clasi) VALUE("Titanic", "Comedia", "PG13");
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+----------+---------+-------+
+| id | titulo   | genero  | clasi |
++----+----------+---------+-------+
+|  1 | Coraline | Comedia | PG    |
+|  2 | Titanic  | Comedia | PG13  |
++----+----------+---------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(id, titulo, genero, clasi) VALUE(3, "Sharknado", "Drama", "PG13");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(id, titulo, genero, clasi) VALUE(3, "Sharknado", "Drama", "PG13");
+ERROR 1062 (23000): Duplicate entry '3' for key 'PRIMARY'
+MariaDB [tbd_eva1]> INSERT INTO peliculas(titulo, genero, clasi) VALUE("Oppenheimer", "Biografia", "PG13");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+-------------+-----------+-------+
+| id | titulo      | genero    | clasi |
++----+-------------+-----------+-------+
+|  1 | Coraline    | Comedia   | PG    |
+|  2 | Titanic     | Comedia   | PG13  |
+|  3 | Sharknado   | Drama     | PG13  |
+|  4 | Oppenheimer | Biografia | PG13  |
++----+-------------+-----------+-------+
+4 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(id, titulo, genero, clasi) VALUE(20, "The Imitation Game", "Documental", "PG");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+--------------------+------------+-------+
+| id | titulo             | genero     | clasi |
++----+--------------------+------------+-------+
+|  1 | Coraline           | Comedia    | PG    |
+|  2 | Titanic            | Comedia    | PG13  |
+|  3 | Sharknado          | Drama      | PG13  |
+|  4 | Oppenheimer        | Biografia  | PG13  |
+| 20 | The Imitation Game | Documental | PG    |
++----+--------------------+------------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas(titulo, genero, clasi) VALUE("The Theory of Everything", "Biografia", "PG13");
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+--------------------------+------------+-------+
+| id | titulo                   | genero     | clasi |
++----+--------------------------+------------+-------+
+|  1 | Coraline                 | Comedia    | PG    |
+|  2 | Titanic                  | Comedia    | PG13  |
+|  3 | Sharknado                | Drama      | PG13  |
+|  4 | Oppenheimer              | Biografia  | PG13  |
+| 20 | The Imitation Game       | Documental | PG    |
+| 21 | The Theory of Everything | Biografia  | PG13  |
++----+--------------------------+------------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> DESC peliculas;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| titulo | varchar(50) | NO   |     | NULL    |                |
+| genero | varchar(50) | NO   |     | NULL    |                |
+| clasi  | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| peliculas          |
+| student            |
+| tv                 |
++--------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE mascota(
+-> id INT AUTO_INCREMENT,
+-> nombre VARCHAR(20) NOT NULL,
+-> especie VARCHAR(20) NOT NULL,
+-> raza VARCHAR(30),
+-> dueño VARCHAR(100) NOT NULL);
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+MariaDB [tbd_eva1]> CREATE TABLE mascota( id INT AUTO_INCREMENT KEY, nombre VARCHAR(20) NOT NULL, especie VARCHAR(20) NOT NULL, raza VARCHAR(30), dueño VARCHAR(100) NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO mascota
+-> (nombre, especie, raza, dueño) VALUE("Coby", "Canino", "Husky", "John Doe");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO mascota
+-> (nombre, especie, raza, dueño)
+-> VALUE("Destroyer of Worlds", "Canino", "Chihuahua", "Frank");
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO mascota(nombre, especie, raza, dueño)
+-> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [tbd_eva1]> INSERT INTO mascota(nombre, especie, raza, dueño)
+-> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [tbd_eva1]> INSERT INTO mascota(nombre, especie, dueño)
+-> VALUE("Planet eater", "Canino", "Robert");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> DESC TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'TABLE' at line 1
+MariaDB [tbd_eva1]> DESC mascotas;
+ERROR 1146 (42S02): Table 'tbd_eva1.mascotas' doesn't exist
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| mascota            |
+| peliculas          |
+| student            |
+| tv                 |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> DESC mascota;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nombre  | varchar(20)  | NO   |     | NULL    |                |
+| especie | varchar(20)  | NO   |     | NULL    |                |
+| raza    | varchar(30)  | YES  |     | NULL    |                |
+| dueño   | varchar(100) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SHOW * FROM mascota;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* FROM mascota' at line 1
+MariaDB [tbd_eva1]> SELECT * FROM mascota;
++----+---------------------+---------+-----------+----------+
+| id | nombre              | especie | raza      | dueño    |
++----+---------------------+---------+-----------+----------+
+|  1 | Coby                | Canino  | Husky     | John Doe |
+|  2 | Destroyer of Worlds | Canino  | Chihuahua | Frank    |
+|  3 | Planet eater        | Canino  | NULL      | Robert   |
++----+---------------------+---------+-----------+----------+
+3 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
