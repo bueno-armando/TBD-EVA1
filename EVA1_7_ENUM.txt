@@ -1,0 +1,216 @@
+╭─senorbuen0@Trimethy in ~/ISC/sem5/leng-autom via  v3.12.5 as 🧙 took 954ms
+╰─λ sudo mysql -u root -p
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 11.5.2-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> DESC peliculas;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| titulo | varchar(50) | NO   |     | NULL    |                |
+| genero | varchar(50) | NO   |     | NULL    |                |
+| clasi  | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+--------------------------+------------+-------+
+| id | titulo                   | genero     | clasi |
++----+--------------------------+------------+-------+
+|  1 | Coraline                 | Comedia    | PG    |
+|  2 | Titanic                  | Comedia    | PG13  |
+|  3 | Sharknado                | Drama      | PG13  |
+|  4 | Oppenheimer              | Biografia  | PG13  |
+| 20 | The Imitation Game       | Documental | PG    |
+| 21 | The Theory of Everything | Biografia  | PG13  |
++----+--------------------------+------------+-------+
+6 rows in set (0.002 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO peliculas
+-> (titulo, genero, clasi)
+-> value("Deadpool","Komedia","Adul");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM peliculas;
++----+--------------------------+------------+-------+
+| id | titulo                   | genero     | clasi |
++----+--------------------------+------------+-------+
+|  1 | Coraline                 | Comedia    | PG    |
+|  2 | Titanic                  | Comedia    | PG13  |
+|  3 | Sharknado                | Drama      | PG13  |
+|  4 | Oppenheimer              | Biografia  | PG13  |
+| 20 | The Imitation Game       | Documental | PG    |
+| 21 | The Theory of Everything | Biografia  | PG13  |
+| 22 | Deadpool                 | Komedia    | Adul  |
++----+--------------------------+------------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE playeras (
+-> id INT AUTO_INCREMENT KEY,
+-> marca VARCHAR(50) NOT NULL,
+-> modelo VARCHAR(50) NOT NULL,
+-> talla ENUM("s", "m", "l", "xl", "xxl"));
+Query OK, 0 rows affected (0.015 sec)
+
+MariaDB [tbd_eva1]> DESC playeras;
++--------+------------------------------+------+-----+---------+----------------+
+| Field  | Type                         | Null | Key | Default | Extra          |
++--------+------------------------------+------+-----+---------+----------------+
+| id     | int(11)                      | NO   | PRI | NULL    | auto_increment |
+| marca  | varchar(50)                  | NO   |     | NULL    |                |
+| modelo | varchar(50)                  | NO   |     | NULL    |                |
+| talla  | enum('s','m','l','xl','xxl') | YES  |     | NULL    |                |
++--------+------------------------------+------+-----+---------+----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO playeras(marca, modelo, talla)
+-> VALUES("Cuidado con el Perro", "Corte recto", "xs");
+ERROR 1265 (01000): Data truncated for column 'talla' at row 1
+MariaDB [tbd_eva1]> INSERT INTO playeras(marca, modelo, talla) VALUES("Cuidado con el Perro", "Corte recto", "s");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM playeras;
++----+----------------------+-------------+-------+
+| id | marca                | modelo      | talla |
++----+----------------------+-------------+-------+
+|  1 | Cuidado con el Perro | Corte recto | s     |
++----+----------------------+-------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO playeras(marca, modelo, talla) VALUES("Cuidado con el Perro", "Corte recto", "xl");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM playeras;
++----+----------------------+-------------+-------+
+| id | marca                | modelo      | talla |
++----+----------------------+-------------+-------+
+|  1 | Cuidado con el Perro | Corte recto | s     |
+|  2 | Cuidado con el Perro | Corte recto | xl    |
++----+----------------------+-------------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> CREATE TABLE clientes (
+-> id INT AUTO_INCREMENT KEY,
+-> id nombre_cliente VARCHAR(50) NOT NULL,
+-> ;
+ERROR 4161 (HY000): Unknown data type: 'nombre_cliente'
+MariaDB [tbd_eva1]> CREATE TABLE clientes (
+-> id INT AUTO_INCREMENT KEY,
+-> nombre_cliente VARCHAR(50) NOT NULL,
+-> direccion VARCHAR(100) NOT NULL,
+-> telefono VARCHAR(15),
+-> denominacion ENUM('moral', 'fisica'));
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [tbd_eva1]> DESC clientes;
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| id             | int(11)                | NO   | PRI | NULL    | auto_increment |
+| nombre_cliente | varchar(50)            | NO   |     | NULL    |                |
+| direccion      | varchar(100)           | NO   |     | NULL    |                |
+| telefono       | varchar(15)            | YES  |     | NULL    |                |
+| denominacion   | enum('moral','fisica') | YES  |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> ALTER TABLE clientes
+-> MODIFY denominacion ENUM('moral', 'fisica') NOT NULL;
+Query OK, 0 rows affected (0.038 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> DESC clientes;
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| id             | int(11)                | NO   | PRI | NULL    | auto_increment |
+| nombre_cliente | varchar(50)            | NO   |     | NULL    |                |
+| direccion      | varchar(100)           | NO   |     | NULL    |                |
+| telefono       | varchar(15)            | YES  |     | NULL    |                |
+| denominacion   | enum('moral','fisica') | NO   |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]>
+Display all 798 possibilities? (y or n)
+MariaDB [tbd_eva1]> INSERT INTO clientes (nombre_cliente, direccion, telefono, denominacion)
+-> VALUES("ITCH II", "Industrias y Homero", "1111111111", "Moral");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO clientes (nombre_cliente, direccion, telefono, denominacion) VALUES("Pedro Perez", "Los Pinos", "1111111111", "Fisica");
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [tbd_eva1]> INSERT INTO clientes (nombre_cliente, direccion, telefono, denominacion) VALUES("Mario Martinez", "Los Alamos", "real");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [tbd_eva1]> INSERT INTO clientes (nombre_cliente, direccion, telefono, denominacion) VALUES("Mario Martinez", "Los Alamos", "fisica");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [tbd_eva1]> INSERT INTO clientes (nombre_cliente, direccion, denominacion) VALUES("Mario Martinez", "Los Alamos", "fisica");Query OK, 1 row affected (0.004 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM clientes;
++----+----------------+---------------------+------------+--------------+
+| id | nombre_cliente | direccion           | telefono   | denominacion |
++----+----------------+---------------------+------------+--------------+
+|  1 | ITCH II        | Industrias y Homero | 1111111111 | moral        |
+|  2 | Pedro Perez    | Los Pinos           | 1111111111 | fisica       |
+|  3 | Mario Martinez | Los Alamos          | NULL       | fisica       |
++----+----------------+---------------------+------------+--------------+
+3 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> SHOW TABLES;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| automovil          |
+| clientes           |
+| mascota            |
+| peliculas          |
+| playeras           |
+| student            |
+| tv                 |
++--------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> ALTER TABLE clientes
+-> add RFC VARCHAR(13)
+-> AFTER nombre_cliente;
+Query OK, 0 rows affected (0.027 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> DESC clientes;
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| id             | int(11)                | NO   | PRI | NULL    | auto_increment |
+| nombre_cliente | varchar(50)            | NO   |     | NULL    |                |
+| RFC            | varchar(13)            | YES  |     | NULL    |                |
+| direccion      | varchar(100)           | NO   |     | NULL    |                |
+| telefono       | varchar(15)            | YES  |     | NULL    |                |
+| denominacion   | enum('moral','fisica') | NO   |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM clientes;
++----+----------------+------+---------------------+------------+--------------+
+| id | nombre_cliente | RFC  | direccion           | telefono   | denominacion |
++----+----------------+------+---------------------+------------+--------------+
+|  1 | ITCH II        | NULL | Industrias y Homero | 1111111111 | moral        |
+|  2 | Pedro Perez    | NULL | Los Pinos           | 1111111111 | fisica       |
+|  3 | Mario Martinez | NULL | Los Alamos          | NULL       | fisica       |
++----+----------------+------+---------------------+------------+--------------+
+3 rows in set (0.000 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
