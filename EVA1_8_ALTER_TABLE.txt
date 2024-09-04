@@ -1,0 +1,214 @@
+╭─senorbuen0@Trimethy in ~/ISC/sem5/bases-datos
+╰─λ sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 11.5.2-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> DESC clientes;
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| id             | int(11)                | NO   | PRI | NULL    | auto_increment |
+| nombre_cliente | varchar(50)            | NO   |     | NULL    |                |
+| RFC            | varchar(13)            | YES  |     | NULL    |                |
+| direccion      | varchar(100)           | NO   |     | NULL    |                |
+| telefono       | varchar(15)            | YES  |     | NULL    |                |
+| denominacion   | enum('moral','fisica') | NO   |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> ALTER TABLE clientes
+-> DROP RFC;
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE clientes
+-> ADD COLUMN rfc VARCHAR(13) NOT NULL AFTER nombre_cliente;
+Query OK, 0 rows affected (0.024 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> DESC clientes;
++----------------+------------------------+------+-----+---------+----------------+
+| Field          | Type                   | Null | Key | Default | Extra          |
++----------------+------------------------+------+-----+---------+----------------+
+| id             | int(11)                | NO   | PRI | NULL    | auto_increment |
+| nombre_cliente | varchar(50)            | NO   |     | NULL    |                |
+| rfc            | varchar(13)            | NO   |     | NULL    |                |
+| direccion      | varchar(100)           | NO   |     | NULL    |                |
+| telefono       | varchar(15)            | YES  |     | NULL    |                |
+| denominacion   | enum('moral','fisica') | NO   |     | NULL    |                |
++----------------+------------------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> ALTER TABLE clientes
+-> CHANGE COLUMN nombre_clientes
+-> razon_social VARCHAR(100) NOT NULL;
+ERROR 1054 (42S22): Unknown column 'nombre_clientes' in 'clientes'
+MariaDB [tbd_eva1]> ALTER TABLE clientes CHANGE COLUMN nombre_cliente razon_social VARCHAR(100) NOT NULL;
+Query OK, 3 rows affected (0.042 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> DESC clientes;
++--------------+------------------------+------+-----+---------+----------------+
+| Field        | Type                   | Null | Key | Default | Extra          |
++--------------+------------------------+------+-----+---------+----------------+
+| id           | int(11)                | NO   | PRI | NULL    | auto_increment |
+| razon_social | varchar(100)           | NO   |     | NULL    |                |
+| rfc          | varchar(13)            | NO   |     | NULL    |                |
+| direccion    | varchar(100)           | NO   |     | NULL    |                |
+| telefono     | varchar(15)            | YES  |     | NULL    |                |
+| denominacion | enum('moral','fisica') | NO   |     | NULL    |                |
++--------------+------------------------+------+-----+---------+----------------+
+6 rows in set (0.004 sec)
+
+MariaDB [tbd_eva1]> SELECT * FROM clientes;
++----+----------------+-----+---------------------+------------+--------------+
+| id | razon_social   | rfc | direccion           | telefono   | denominacion |
++----+----------------+-----+---------------------+------------+--------------+
+|  1 | ITCH II        |     | Industrias y Homero | 1111111111 | moral        |
+|  2 | Pedro Perez    |     | Los Pinos           | 1111111111 | fisica       |
+|  3 | Mario Martinez |     | Los Alamos          | NULL       | fisica       |
++----+----------------+-----+---------------------+------------+--------------+
+3 rows in set (0.002 sec)
+
+MariaDB [tbd_eva1]> RENAME TABLE clientes TO cliente;
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [tbd_eva1]> DESC cliente;
++--------------+------------------------+------+-----+---------+----------------+
+| Field        | Type                   | Null | Key | Default | Extra          |
++--------------+------------------------+------+-----+---------+----------------+
+| id           | int(11)                | NO   | PRI | NULL    | auto_increment |
+| razon_social | varchar(100)           | NO   |     | NULL    |                |
+| rfc          | varchar(13)            | NO   |     | NULL    |                |
+| direccion    | varchar(100)           | NO   |     | NULL    |                |
+| telefono     | varchar(15)            | YES  |     | NULL    |                |
+| denominacion | enum('moral','fisica') | NO   |     | NULL    |                |
++--------------+------------------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> CREATE DATABASE prueba;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [tbd_eva1]> USE prueba;
+Database changed
+MariaDB [prueba]> CREATE TABLE a;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [prueba]> CREATE TABLE a(dato INT);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [prueba]> CREATE TABLE b(dato INT);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [prueba]> CREATE TABLE c(dato INT);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [prueba]> SHOW TABLES;
++------------------+
+| Tables_in_prueba |
++------------------+
+| a                |
+| b                |
+| c                |
++------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [prueba]> DROP *;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*' at line 1
+MariaDB [prueba]> USE tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [tbd_eva1]> CREATE TABLE docente (
+-> nombre VARCHAR(50) NOT NULL,
+-> plaza VARCHAR(50),
+-> horas_plaza INT,
+-> centro_trabajo VARCHAR(50) NOT NULL,
+-> salario INT,
+-> NO ES;
+ERROR 4161 (HY000): Unknown data type: 'ES'
+MariaDB [tbd_eva1]> CREATE TABLE docente (
+-> nombre VARCHAR(50) NOT NULL,
+-> plaza VARCHAR(50),
+-> horas_plaza INT,
+-> centro_trabajo VARCHAR(50) NOT NULL,
+-> salario DECIMAL(10,10),
+-> antiguedad INT NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [tbd_eva1]> DESC docente;
++----------------+----------------+------+-----+---------+-------+
+| Field          | Type           | Null | Key | Default | Extra |
++----------------+----------------+------+-----+---------+-------+
+| nombre         | varchar(50)    | NO   |     | NULL    |       |
+| plaza          | varchar(50)    | YES  |     | NULL    |       |
+| horas_plaza    | int(11)        | YES  |     | NULL    |       |
+| centro_trabajo | varchar(50)    | NO   |     | NULL    |       |
+| salario        | decimal(10,10) | YES  |     | NULL    |       |
+| antiguedad     | int(11)        | NO   |     | NULL    |       |
++----------------+----------------+------+-----+---------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> ADD COLUMN id INT AUTO_INCREMENT NOT NULL;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+MariaDB [tbd_eva1]> ALTER TABLE docente ADD COLUMN id INT KEY AUTO_INCREMENT NOT NULL;
+Query OK, 0 rows affected (0.029 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> ADD COLUMN apellidos VARCHAR(100) AFTER nombre;
+Query OK, 0 rows affected (0.021 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> ADD COLUMN R_F_C VARCHAR(30) AFTER apellidos;
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> CHANGE COLUMN R_F_C rfc VARCHAR(13);
+Query OK, 0 rows affected (0.037 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> MODIFY plaza varchar(50) NOT NULL;
+Query OK, 0 rows affected (0.034 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> ALTER TABLE docente
+-> MODIFY horas_plaza TIME(0);
+Query OK, 0 rows affected (0.032 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [tbd_eva1]> DESC docente;
++----------------+----------------+------+-----+---------+----------------+
+| Field          | Type           | Null | Key | Default | Extra          |
++----------------+----------------+------+-----+---------+----------------+
+| nombre         | varchar(50)    | NO   |     | NULL    |                |
+| apellidos      | varchar(100)   | YES  |     | NULL    |                |
+| rfc            | varchar(13)    | YES  |     | NULL    |                |
+| plaza          | varchar(50)    | NO   |     | NULL    |                |
+| horas_plaza    | time           | YES  |     | NULL    |                |
+| centro_trabajo | varchar(50)    | NO   |     | NULL    |                |
+| salario        | decimal(10,10) | YES  |     | NULL    |                |
+| antiguedad     | int(11)        | NO   |     | NULL    |                |
+| id             | int(11)        | NO   | PRI | NULL    | auto_increment |
++----------------+----------------+------+-----+---------+----------------+
+9 rows in set (0.003 sec)
+
+MariaDB [tbd_eva1]> exit
+Bye
