@@ -1,0 +1,101 @@
+─senorbuen0@Trimethy in ~ via  v3.12.5
+╰─λ sudo mysql -u root -p
+[sudo] password for senorbuen0:
+mysql: Deprecated program name. It will be removed in a future release, use '/usr/bin/mariadb' instead
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4
+Server version: 11.5.2-MariaDB Arch Linux
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE workplace;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> USE workplace;
+Database changed
+MariaDB [workplace]> CREATE TABLE Employee (
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> full_name VARCHAR(50) NOT NULL,
+-> age INT NOT NULL,
+-> contract_id INT NOT NULL,
+-> job_id INT NOT NULL,
+-> department_id INT NOT NULL,
+-> unit_id INT NOT NULL,
+-> gender_id INT NOT NULL,
+-> ehtnicity_id INT NOT NULL,
+-> city_id INT NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> DESC Employee;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(11)     | NO   | PRI | NULL    | auto_increment |
+| full_name     | varchar(50) | NO   |     | NULL    |                |
+| age           | int(11)     | NO   |     | NULL    |                |
+| contract_id   | int(11)     | NO   |     | NULL    |                |
+| job_id        | int(11)     | NO   |     | NULL    |                |
+| department_id | int(11)     | NO   |     | NULL    |                |
+| unit_id       | int(11)     | NO   |     | NULL    |                |
+| gender_id     | int(11)     | NO   |     | NULL    |                |
+| ehtnicity_id  | int(11)     | NO   |     | NULL    |                |
+| city_id       | int(11)     | NO   |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+10 rows in set (0.001 sec)
+
+MariaDB [workplace]> CREATE TABLE gender(
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> gender ENUM('Male', 'Female') NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> CREATE TABLE Ethnicity(
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> ehtnicity ENUM('Black', 'Latino', 'Caucasian', 'Asian') NOT NULL);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [workplace]> CREATE TABLE Country(
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> country VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> CREATE TABLE Units(
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> unit ENUM('Research & Development', 'Manufacturing', 'Specialty Products', 'Corporate');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3
+MariaDB [workplace]> CREATE TABLE Units( id INT AUTO_INCREMENT PRIMARY KEY, unit ENUM('Research & Development', 'Manufacturing', 'Specialty Products', 'Corporate'));
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> CREATE TABLE City(
+-> id INT AUTO_INCREMENT PRIMARY KEY
+-> , city VARCHAR(50) NOT NULL,
+-> country_id INT NOT NULL);
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> CREATE TABLE Departments(
+-> id INT AUTO_INCREMENT PRIMARY KEY,
+-> deparment ENUM('IT', 'Finance', 'Sales', 'Accounting', 'Human Resources', 'Engineering', 'Marketing'));
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [workplace]> CREATE TABLE job_position( id INT AUTO_INCREMENT PRIMARY KEY, title ENUM('Account Representative', 'Analyst', 'Analyst II', 'Automation Engineer', 'Business Partner', 'Cloud Infrastructure Architect', 'Computer Systems Manager', 'Controls Engineer','Director', 'Engineering Manager', 'Enterprise Architect', 'Field Engineer', 'HRIS Analyst', 'IT Coordinator', 'Manager', 'Network Architect', 'Network Engineer', 'Operations Engineer', 'Quality Engineer', 'Sr. Analyst', 'Sr. Business Partner', 'Sr. Manager', 'Technical Architect', 'Test Engineer', 'Vice President' ) NOT NULL);
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [workplace]> SHOW TABLES;
++---------------------+
+| Tables_in_workplace |
++---------------------+
+| City                |
+| Country             |
+| Departments         |
+| Employee            |
+| Ethnicity           |
+| Units               |
+| gender              |
+| job_position        |
++---------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [workplace]> exit;
+Bye
